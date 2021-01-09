@@ -55,10 +55,10 @@ export const getAllMedia = async function (page, perPage = 50) {
   return Page;
 };
 
-export const getAnime = async function (id) {
+export const getMedia = async function (id) {
   const query = gql`
     query($id: Int) {
-      Media(id: $id, type: ANIME) {
+      Media(id: $id) {
         id
         title {
           romaji

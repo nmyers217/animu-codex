@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
 import { getAllMedia } from '../api';
 
-interface AnimeListProps {}
+interface MediaListProps {}
 
-function AnimeList(props: AnimeListProps) {
+function MediaList(props: MediaListProps) {
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(50);
   const { status, data, error, isFetching } = useQuery(
     // TODO: this will change once we support sorts and filters
-    ['animelist', page, perPage],
+    ['medialist', page, perPage],
     async () => getAllMedia(page, perPage),
     {
       // We will consider the data fresh for 5 minutes to save our rate limit
@@ -30,8 +31,16 @@ function AnimeList(props: AnimeListProps) {
 
           {data.media.map((m: any) => (
             <div key={m.id}>
-              {m.title.english && <h3>{m.title.english}</h3>}
-              {m.title.romanji && <h3>{m.title.romanji}</h3>}
+              {m.title.english && (
+                <Link to={`/media/${m.id}`}>
+                  <h3>{m.title.english}</h3>
+                </Link>
+              )}
+              {m.title.romanji && (
+                <Link to={`/media/${m.id}`}>
+                  <h3>{m.title.romanji}</h3>
+                </Link>
+              )}
 
               {m.coverImage.medium && (
                 <img
@@ -62,4 +71,4 @@ function AnimeList(props: AnimeListProps) {
   );
 }
 
-export default AnimeList;
+export default MediaList;

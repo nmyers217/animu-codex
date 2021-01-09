@@ -1,18 +1,21 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
-import { getAnime } from '../api';
+import { getMedia } from '../api';
 
-interface AnimeProps {
+interface MediaProps {
   id: number;
 }
 
-function Anime({ id }: AnimeProps) {
+function Media({ id }: MediaProps) {
+  const history = useHistory();
   const { status, data, error, isFetching } = useQuery(
-    ['anime', id],
-    async () => getAnime(id),
+    ['media', id],
+    async () => getMedia(id),
     {
       enabled: !!id,
+      staleTime: 5 * 60 * 1000,
     }
   );
 
@@ -24,6 +27,9 @@ function Anime({ id }: AnimeProps) {
         <span>Error: {(error as Error).message}</span>
       ) : (
         <>
+          <p>
+            <button onClick={() => history.goBack()}>{'< back'}</button>
+          </p>
           <h1>{data.title.english}</h1>
           <div>{isFetching ? 'Background Updating...' : ' '}</div>
         </>
@@ -32,4 +38,4 @@ function Anime({ id }: AnimeProps) {
   );
 }
 
-export default Anime;
+export default Media;
