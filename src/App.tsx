@@ -19,36 +19,23 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/media">Animu & Mango</Link>
-              </li>
-            </ul>
-          </nav>
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/media" />
+          </Route>
 
-          <Switch>
-            <Route exact path="/">
-              <Redirect to="/media" />
-            </Route>
+          <Route exact path="/media">
+            <MediaListPage />
+          </Route>
 
-            <Route exact path="/media">
-              <MediaListPage />
-            </Route>
+          <Route path="/media/:id">
+            <MediaDetailPage />
+          </Route>
 
-            <Route path="/media/:id">
-              <MediaDetailPage />
-            </Route>
-
-            <Route path="*">
-              <PageNotFound />
-            </Route>
-          </Switch>
-        </div>
+          <Route path="*">
+            <PageNotFound />
+          </Route>
+        </Switch>
       </Router>
 
       <ReactQueryDevtools initialIsOpen={false} />
