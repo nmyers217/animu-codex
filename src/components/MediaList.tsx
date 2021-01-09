@@ -59,7 +59,7 @@ function MediaList(props: MediaListProps) {
               {m.description &&
                 m.description
                   .split('<br>')
-                  .map((line: string) => <p>{line}</p>)
+                  .map((line: string, i: number) => <p key={i}>{line}</p>)
                   .shift()}
             </div>
           ))}

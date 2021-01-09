@@ -5,6 +5,7 @@ const client = new GraphQLClient(endpoint);
 
 export const getAllMedia = async function (page, perPage = 50) {
   // TODO: support different media query params
+  // TODO: trim unused fields
   const query = gql`
     query($page: Int, $perPage: Int) {
       Page(page: $page, perPage: $perPage) {
@@ -39,6 +40,7 @@ export const getAllMedia = async function (page, perPage = 50) {
           season
           episodes
           chapters
+          volumes
           coverImage {
             medium
           }
@@ -60,11 +62,44 @@ export const getMedia = async function (id) {
     query($id: Int) {
       Media(id: $id) {
         id
+        idMal
         title {
-          romaji
           english
+          romaji
           native
         }
+        type
+        status
+        description
+        startDate {
+          year
+          month
+          day
+        }
+        endDate {
+          year
+          month
+          day
+        }
+        season
+        episodes
+        chapters
+        volumes
+        trailer {
+          id
+          site
+          thumbnail
+        }
+        coverImage {
+          large
+        }
+        bannerImage
+        genres
+        averageScore
+        popularity
+        isLocked
+        favourites
+        updatedAt
       }
     }
   `;
