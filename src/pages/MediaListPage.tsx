@@ -6,6 +6,7 @@ import MediaList from '../components/MediaList';
 function MediaListPage() {
   return (
     <div className="bg-gray-200">
+      {/* TODO: show back button */}
       <Nav />
 
       <header className="bg-white shadow">

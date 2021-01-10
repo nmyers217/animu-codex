@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
+// TODO: support a back button on the top left of the nav
 function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
 

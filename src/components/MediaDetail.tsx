@@ -4,11 +4,11 @@ import { useQuery } from 'react-query';
 
 import { getMedia } from '../api';
 
-interface MediaProps {
+interface MediaDetailProps {
   id: number;
 }
 
-function Media({ id }: MediaProps) {
+function MediaDetail({ id }: MediaDetailProps) {
   const history = useHistory();
   const { status, data, error, isFetching } = useQuery(
     ['media', id],
@@ -85,4 +85,4 @@ function Media({ id }: MediaProps) {
   );
 }
 
-export default Media;
+export default MediaDetail;
