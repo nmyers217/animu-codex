@@ -17,13 +17,13 @@ function Nav({ showBack }: NavProps) {
 
   return (
     <nav className="bg-gray-800 dark:bg-indigo-900 min-w-full fixed z-50 shadow-lg">
-      <div className="container mx-auto">
+      <div className="container mx-auto max-w-5xl">
         <div className="flex flex-row items-center justify-between">
           {/* Left Side */}
           <div className="flex-none">
             <div
               className={`${
-                showBack ? 'block' : 'hidden'
+                showBack ? 'block' : 'invisible'
               } ml-4 w-12 h-12 p-2 cursor-pointer`}
               onClick={() => history.goBack()}
             >
