@@ -16,7 +16,7 @@ interface SearchFormProps {
 }
 
 function SearchForm({ onSubmit, defaults }: SearchFormProps) {
-  const { register, handleSubmit, errors } = useForm<SearchFormState>({
+  const { register, handleSubmit } = useForm<SearchFormState>({
     defaultValues: defaults,
   });
 
