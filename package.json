@@ -1,7 +1,6 @@
 {
   "name": "animu-index",
   "version": "0.1.0",
-  "homepage": "https://nmyers217.github.io/animu-codex",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.0.0",

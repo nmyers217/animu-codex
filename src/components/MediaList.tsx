@@ -50,7 +50,7 @@ function MediaList({ filterState }: MediaListProps) {
     <div className="subpixel-antialiased md:antialiased">
       {status === 'loading' ? (
         <div className="container mx-auto max-w-5xl flex items-center justify-center pt-10 pb-16 sm:pt-24 sm:pb-36 lg:pt-40 lg:pb-56 text-center">
-          <LoadingSpinner width={20} height={20} color="indigo-600" />
+          <LoadingSpinner />
         </div>
       ) : status === 'error' ? (
         <span className="text-red-600">Error: {(error as Error).message}</span>
