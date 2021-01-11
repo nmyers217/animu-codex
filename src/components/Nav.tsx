@@ -16,7 +16,7 @@ function Nav({ showBack }: NavProps) {
   });
 
   return (
-    <nav className="bg-gray-800 min-w-full fixed z-50">
+    <nav className="bg-gray-800 dark:bg-indigo-900 min-w-full fixed z-50 shadow-lg">
       <div className="container mx-auto">
         <div className="flex flex-row items-center justify-between">
           {/* Left Side */}

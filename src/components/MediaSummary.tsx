@@ -22,8 +22,8 @@ const formatDate = function (date: {
 
 function MediaSummary({ media }: MediaSummaryProps) {
   return (
-    <div className="container bg-white max-w-5xl mx-auto px-4 py-6 flex space-x-4 justify-between dark:bg-gray-800 dark:bg-opacity-40">
-      <div className="flex flex-none justify-center items-center">
+    <div className="container bg-white max-w-5xl mx-auto flex sm:space-x-4 sm:justify-between dark:bg-gray-800 dark:bg-opacity-40">
+      <div className="ml-4 hidden sm:flex flex-none justify-center items-center">
         <MediaCover
           id={media.id}
           title={media.title}
@@ -31,14 +31,23 @@ function MediaSummary({ media }: MediaSummaryProps) {
         />
       </div>
 
-      <div className="flex flex-col flex-grow space-y-4 border-l-4 border-opacity-75 border-purple-600 dark:border-indigo-600">
-        <div className="px-2 pb-2 flex flex-row justify-between border-b border-gray-200 dark:border-gray-700">
-          <div>
-            <MediaTitle id={media.id} {...media.title} />
+      <div className="flex flex-col flex-grow space-y-4 sm:border-l-4 sm:border-opacity-75 sm:border-purple-600 sm:dark:border-indigo-600">
+        <div className="flex flex-col sm:flex-row justify-between border-b border-gray-200 dark:border-gray-700 divide-y divide-gray-200 dark:divide-gray-700 sm:divide-y-0">
+          <div className="flex flex-row items-center space-x-4 divide-x-1 divide-gray-200 dark:divide-gray-700">
+            <div className="sm:hidden">
+              <MediaCover
+                id={media.id}
+                title={media.title}
+                coverImage={media.coverImage}
+              />
+            </div>
+            <div>
+              <MediaTitle id={media.id} {...media.title} />
+            </div>
           </div>
 
-          <div className="flex flex-none flex-col justify-around">
-            <div className="flex flex-row justify-end">
+          <div className="p-2 sm:p-4 flex flex-none flex-row-reverse justify-between items-center sm:flex-col sm:justify-around sm:items-stretch">
+            <div className="flex flex-row justify-end items-center">
               <MediaStatus status={media.status} />
             </div>
 
@@ -70,7 +79,7 @@ function MediaSummary({ media }: MediaSummaryProps) {
           />
         </div>
 
-        <div className="px-2">
+        <div className="px-2 pb-4">
           {media.description && (
             <MediaDescription
               description={media.description}
