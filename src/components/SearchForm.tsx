@@ -3,10 +3,11 @@ import { useForm } from 'react-hook-form';
 
 export interface SearchFormState {
   search: string;
+  status: string;
 }
 
 export const defaultFormState = () => {
-  return { search: '' };
+  return { search: '', status: 'All Statuses' };
 };
 
 interface SearchFormProps {
@@ -22,7 +23,7 @@ function SearchForm({ onSubmit, defaults }: SearchFormProps) {
   return (
     <div className="container mx-auto max-w-5xl p-4">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-row justify-between space-x-4">
+        <div className="flex flex-row justify-between items-center space-x-4">
           <input
             type="text"
             name="search"
@@ -31,6 +32,19 @@ function SearchForm({ onSubmit, defaults }: SearchFormProps) {
             ref={register}
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:opacity-50"
           />
+
+          <select
+            name="status"
+            ref={register}
+            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          >
+            <option>All Statuses</option>
+            <option>Finished</option>
+            <option>Releasing</option>
+            <option>Not Yet Released</option>
+            <option>Cancelled</option>
+            <option>Hiatus</option>
+          </select>
 
           <input
             type="submit"

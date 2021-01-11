@@ -38,8 +38,8 @@ function MediaBadges({
   const badges = [
     { show: true, content: type.toLowerCase(), color },
     {
-      show: format !== type,
-      content: format.toLowerCase(),
+      show: format && format !== type,
+      content: format?.toLowerCase(),
       color: 'bg-purple-500',
     },
     {

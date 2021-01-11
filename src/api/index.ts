@@ -11,7 +11,7 @@ export const getAllMedia = async function (
 ) {
   const perPage = 25;
   const query = gql`
-    query($search: String, $page: Int, $perPage: Int) {
+    query($search: String, $status: MediaStatus, $page: Int, $perPage: Int) {
       Page(page: $page, perPage: $perPage) {
         pageInfo {
           total
@@ -20,7 +20,7 @@ export const getAllMedia = async function (
           lastPage
           hasNextPage
         }
-        media(search: $search, sort: POPULARITY_DESC) {
+        media(search: $search, status: $status, sort: POPULARITY_DESC) {
           id
           coverImage {
             medium
@@ -44,7 +44,6 @@ export const getAllMedia = async function (
           }
           type
           format
-          genres
           season
           seasonYear
           episodes
@@ -55,7 +54,15 @@ export const getAllMedia = async function (
       }
     }
   `;
-  const variables = { page, perPage, search: filters.search || undefined };
+  const variables = {
+    page,
+    perPage,
+    search: filters.search || undefined,
+    status:
+      !filters.status || filters.status.includes('All')
+        ? undefined
+        : filters.status.toUpperCase().split(' ').join('_'),
+  };
   const { Page } = await client.request(query, variables);
   return Page;
 };

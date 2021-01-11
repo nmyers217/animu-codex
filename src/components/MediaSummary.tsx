@@ -37,13 +37,23 @@ function MediaSummary({ media }: MediaSummaryProps) {
             <MediaTitle id={media.id} {...media.title} />
           </div>
 
-          <div className="flex flex-col justify-around">
+          <div className="flex flex-none flex-col justify-around">
             <div className="flex flex-row justify-end">
               <MediaStatus status={media.status} />
             </div>
 
             <div className="font-sans font-normal text-gray-400 tracking-tight text-right">
-              {formatDate(media.startDate)} - {formatDate(media.endDate)}
+              {media.startDate.day ? (
+                <>
+                  <span>{formatDate(media.startDate)}</span>
+                  {' - '}
+                  <span>
+                    {media.endDate.day ? formatDate(media.endDate) : 'Present'}
+                  </span>
+                </>
+              ) : (
+                <span className="mr-8">TBD</span>
+              )}
             </div>
           </div>
         </div>
