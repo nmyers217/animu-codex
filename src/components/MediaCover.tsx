@@ -12,12 +12,12 @@ function MediaCover({ id, title, coverImage }: MediaCoverProps) {
   return (
     <>
       <Link to={`/media/${id}`}>
-        <div className="block md:hidden">
+        <div className="block md:hidden shadow-lg">
           {coverImage.medium && (
             <img alt={`${preferredTitle} cover`} src={coverImage.medium} />
           )}
         </div>
-        <div className="hidden md:block">
+        <div className="hidden md:block shadow-lg">
           {coverImage.large && (
             <img alt={`${preferredTitle} cover`} src={coverImage.large} />
           )}

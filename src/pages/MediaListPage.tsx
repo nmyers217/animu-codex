@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import Nav from '../components/Nav';
 import SearchForm, {
@@ -7,6 +7,7 @@ import SearchForm, {
 } from '../components/SearchForm';
 import MediaList from '../components/MediaList';
 import Footer from '../components/Footer';
+import ScrollToTop from '../components/ScrollToTop';
 
 function MediaListPage() {
   // TODO: support filling this via query string
@@ -15,13 +16,16 @@ function MediaListPage() {
     defaultFormState
   );
 
+  const topRef = useRef<any>();
+
   return (
     <>
       <Nav />
-      <main className="bg-gray-100 pt-16">
+      <main ref={topRef} className="bg-gray-100 pt-16">
         <SearchForm onSubmit={setFilterState} defaults={filterState} />
         <MediaList filterState={filterState} />
       </main>
+      <ScrollToTop topRef={topRef} />
       <Footer />
     </>
   );
