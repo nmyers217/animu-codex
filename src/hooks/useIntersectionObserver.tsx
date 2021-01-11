@@ -8,31 +8,35 @@ export default function useIntersectionObserver({
   rootMargin = '0px',
   enabled = true,
 }: any) {
-  React.useEffect(() => {
-    if (!enabled) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((entry) => entry.isIntersecting && onIntersect()),
-      {
-        root: root && root.current,
-        rootMargin,
-        threshold,
+  React.useEffect(
+    () => {
+      if (!enabled) {
+        return;
       }
-    );
 
-    const el = target && target.current;
+      const observer = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((entry) => entry.isIntersecting && onIntersect()),
+        {
+          root: root && root.current,
+          rootMargin,
+          threshold,
+        }
+      );
 
-    if (!el) {
-      return;
-    }
+      const el = target && target.current;
 
-    observer.observe(el);
+      if (!el) {
+        return;
+      }
 
-    return () => {
-      observer.unobserve(el);
-    };
-  }, [target.current, enabled]);
+      observer.observe(el);
+
+      return () => {
+        observer.unobserve(el);
+      };
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [target.current, enabled]
+  );
 }

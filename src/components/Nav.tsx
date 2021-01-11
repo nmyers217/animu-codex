@@ -1,5 +1,9 @@
 import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
+// @ts-ignore
+import DarkModeToggle from 'react-dark-mode-toggle';
+
+import useDarkMode from 'use-dark-mode';
 
 interface NavProps {
   showBack?: boolean;
@@ -7,13 +11,16 @@ interface NavProps {
 
 function Nav({ showBack }: NavProps) {
   const history = useHistory();
+  const darkMode = useDarkMode(false, {
+    classNameDark: 'dark',
+  });
 
   return (
     <nav className="bg-gray-800 min-w-full fixed z-50">
       <div className="container mx-auto">
         <div className="flex flex-row items-center justify-between">
           {/* Left Side */}
-          <div className="flex-none w-3/12">
+          <div className="flex-none">
             <div
               className={`${
                 showBack ? 'block' : 'hidden'
@@ -36,7 +43,7 @@ function Nav({ showBack }: NavProps) {
           </div>
 
           {/* Centered Logo & Title */}
-          <div className="w-6/12">
+          <div className="flex-none">
             <NavLink to="/">
               <div className="group flex flex-row flex-none justify-center items-center cursor-pointer">
                 {/* Logo */}
@@ -171,7 +178,13 @@ function Nav({ showBack }: NavProps) {
           </div>
 
           {/* Right Side */}
-          <div className="w-3/12"></div>
+          <div className="flex flex-none p-2 mr-4 items-center justify-end">
+            <DarkModeToggle
+              onChange={darkMode.toggle}
+              checked={darkMode.value}
+              size={60}
+            />
+          </div>
         </div>
       </div>
     </nav>

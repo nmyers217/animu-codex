@@ -24,7 +24,9 @@ function MediaStatus({ status }: MediaStatusProps) {
   })();
 
   return (
-    <div className={`rounded-full bg-white border-4 ${color} p-1 text-xs`}>
+    <div
+      className={`rounded-full bg-white border-4 ${color} p-1 text-xs dark:text-white dark:bg-gray-800 dark:bg-opacity-40`}
+    >
       <span className="font-medium capitalize">
         {status.toLowerCase().replace(/_/g, ' ')}
       </span>

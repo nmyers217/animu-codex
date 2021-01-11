@@ -21,9 +21,11 @@ function MediaListPage() {
   return (
     <>
       <Nav />
-      <main ref={topRef} className="bg-gray-100 pt-16">
-        <SearchForm onSubmit={setFilterState} defaults={filterState} />
-        <MediaList filterState={filterState} />
+      <main ref={topRef} className="bg-gray-100 dark:bg-gray-900 pt-16">
+        <div className="flex-col">
+          <SearchForm onSubmit={setFilterState} defaults={filterState} />
+          <MediaList filterState={filterState} />
+        </div>
       </main>
       <ScrollToTop topRef={topRef} />
       <Footer />

@@ -22,7 +22,7 @@ const formatDate = function (date: {
 
 function MediaSummary({ media }: MediaSummaryProps) {
   return (
-    <div className="container bg-white max-w-5xl mx-auto px-4 py-6 flex space-x-4 justify-between">
+    <div className="container bg-white max-w-5xl mx-auto px-4 py-6 flex space-x-4 justify-between dark:bg-gray-800 dark:bg-opacity-40">
       <div className="flex flex-none justify-center items-center">
         <MediaCover
           id={media.id}
@@ -31,8 +31,8 @@ function MediaSummary({ media }: MediaSummaryProps) {
         />
       </div>
 
-      <div className="flex flex-col flex-grow space-y-4 border-l-4 border-opacity-75 border-purple-600">
-        <div className="px-2 pb-2 flex flex-row justify-between border-b border-gray-200">
+      <div className="flex flex-col flex-grow space-y-4 border-l-4 border-opacity-75 border-purple-600 dark:border-indigo-600">
+        <div className="px-2 pb-2 flex flex-row justify-between border-b border-gray-200 dark:border-gray-700">
           <div>
             <MediaTitle id={media.id} {...media.title} />
           </div>

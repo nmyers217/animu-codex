@@ -31,7 +31,7 @@ function MediaDescription({
     // Instead of parsing, let's just trust they already stopped the XSS attacks for us :)
     <div
       style={{ textIndent: '1.5rem' }}
-      className="tracking-normal leading-relaxed text-justify"
+      className="tracking-normal leading-relaxed text-justify dark:text-gray-400"
       dangerouslySetInnerHTML={{ __html: `<p>${html}</p>` }}
     ></div>
   );

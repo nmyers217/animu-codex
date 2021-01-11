@@ -58,7 +58,7 @@ function MediaList({ filterState }: MediaListProps) {
         <>
           {data && data.pages.length > 0 && data.pages[0].media.length > 0 && (
             <>
-              <div className="divide-y-2 divide-gray-100">
+              <div className="divide-y-2 divide-gray-100 dark:divide-gray-700">
                 {data.pages
                   .flatMap((page) => page.media)
                   .map((media: any, i: number) => (

@@ -14,10 +14,10 @@ function MediaTitle({ id, english, romaji, native }: MediaTitleProps) {
 
   return (
     <>
-      <h2 className="text-2xl font-medium text-gray-900 title-font">
+      <h2 className="text-2xl font-medium text-gray-900 title-font dark:text-white">
         <Link
           to={`/media/${id}`}
-          className="hover:underline hover:text-purple-600"
+          className="hover:underline hover:text-purple-600 dark:hover:text-indigo-500"
         >
           {preferred}
           <br />
