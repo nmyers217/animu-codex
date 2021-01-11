@@ -7,9 +7,9 @@ const client = new GraphQLClient(endpoint);
 
 export const getAllMedia = async function (
   page: number,
-  perPage: number = 50,
   filters: SearchFormState
 ) {
+  const perPage = 25;
   const query = gql`
     query($search: String, $page: Int, $perPage: Int) {
       Page(page: $page, perPage: $perPage) {
