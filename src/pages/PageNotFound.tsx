@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Nav from '../components/Nav';
+import Footer from '../components/Footer';
 
 function PageNotFound() {
   return (
@@ -14,6 +15,8 @@ function PageNotFound() {
           </h1>
         </div>
       </header>
+
+      <Footer />
     </>
   );
 }

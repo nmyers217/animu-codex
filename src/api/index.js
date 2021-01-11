@@ -43,6 +43,7 @@ export const getAllMedia = async function (page, perPage = 50) {
           volumes
           coverImage {
             medium
+            large
           }
           genres
           averageScore

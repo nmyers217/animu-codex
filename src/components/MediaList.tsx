@@ -20,18 +20,18 @@ function MediaList(props: MediaListProps) {
   );
 
   return (
-    <div>
+    <div className="subpixel-antialiased md:antialiased">
       {status === 'loading' ? (
         'Loading...'
       ) : status === 'error' ? (
         <span>Error: {(error as Error).message}</span>
       ) : (
         <>
-          <h1>{`Page ${data.pageInfo.currentPage}/${data.pageInfo.lastPage}`}</h1>
-
-          {data.media.map((m: any) => (
-            <MediaSummary key={m.id} media={m} />
-          ))}
+          <section className="divide-y-2 divide-gray-100">
+            {data.media.map((m: any) => (
+              <MediaSummary key={m.id} media={m} />
+            ))}
+          </section>
 
           <div>{isFetching ? 'Background Updating...' : ' '}</div>
         </>

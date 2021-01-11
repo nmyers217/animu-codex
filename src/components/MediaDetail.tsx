@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
 import { getMedia } from '../api';
@@ -9,7 +8,6 @@ interface MediaDetailProps {
 }
 
 function MediaDetail({ id }: MediaDetailProps) {
-  const history = useHistory();
   const { status, data, error, isFetching } = useQuery(
     ['media', id],
     async () => getMedia(id),
@@ -27,10 +25,6 @@ function MediaDetail({ id }: MediaDetailProps) {
         <span>Error: {(error as Error).message}</span>
       ) : (
         <>
-          <p>
-            <button onClick={() => history.goBack()}>{'< back'}</button>
-          </p>
-
           {/* TODO: what happens if its a manga */}
 
           {data.bannerImage && (

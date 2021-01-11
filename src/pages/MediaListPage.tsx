@@ -2,29 +2,17 @@ import React from 'react';
 
 import Nav from '../components/Nav';
 import MediaList from '../components/MediaList';
+import Footer from '../components/Footer';
 
 function MediaListPage() {
   return (
-    <div className="bg-gray-200">
-      {/* TODO: show back button */}
+    <>
       <Nav />
-
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold leading-tight text-gray-900">
-            Animu & Mango
-          </h1>
-        </div>
-      </header>
-
-      <main>
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <div className="px-4 py-6 sm:px-0">
-            <MediaList />
-          </div>
-        </div>
+      <main className="pt-16">
+        <MediaList />
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }
 

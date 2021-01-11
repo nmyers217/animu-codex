@@ -1,90 +1,177 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
 
-// TODO: support a back button on the top left of the nav
-function Nav() {
-  const [menuOpen, setMenuOpen] = useState(false);
+interface NavProps {
+  showBack?: boolean;
+}
+
+function Nav({ showBack }: NavProps) {
+  const history = useHistory();
 
   return (
-    <nav className="bg-gray-800">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="relative flex items-center justify-between h-16">
-          <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-            {/* Logo */}
-            <div className="flex-shrink-0 flex items-center">
-              {/* TODO: replace branding */}
-              <img
-                className="lg:block h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                alt="Workflow"
-              />
-            </div>
-
-            {/* Links */}
-            <div className="hidden sm:block sm:ml-6">
-              <div className="flex space-x-4">
-                <NavLink
-                  to="/media"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Explore
-                </NavLink>
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="-mr-2 flex sm:hidden">
-            <button
-              className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-              onClick={() => setMenuOpen(!menuOpen)}
+    <nav className="bg-gray-800 min-w-full fixed">
+      <div className="container mx-auto">
+        <div className="flex flex-row items-center justify-between">
+          {/* Left Side */}
+          <div className="flex-none w-3/12">
+            <div
+              className={`${
+                showBack ? 'block' : 'hidden'
+              } ml-4 w-12 h-12 p-2 cursor-pointer`}
+              onClick={() => history.goBack()}
             >
-              <span className="sr-only">Open main menu</span>
-
               <svg
-                className="block h-6 w-6"
+                className="fill-current stroke-current text-white hover:text-purple-300"
                 xmlns="http://www.w3.org/2000/svg"
-                fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
                 />
               </svg>
-
-              <svg
-                className="hidden h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div className={`${menuOpen ? 'block' : 'hidden'} sm:hidden`}>
-        <div className="px-2 pt-2 pb-3 space-y-1">
-          <NavLink
-            to="/media"
-            className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-          >
-            Explore
-          </NavLink>
+          {/* Centered Logo & Title */}
+          <div className="w-6/12">
+            <NavLink to="/">
+              <div className="group flex flex-row flex-none justify-center items-center cursor-pointer">
+                {/* Logo */}
+                <div className="w-16 h-16 p-2">
+                  <svg
+                    className="w-12 h-12"
+                    viewBox="0 0 154 204"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="7"
+                      y="7"
+                      width="140"
+                      height="190"
+                      rx="10"
+                      fill="#EE3E37"
+                    />
+                    <path
+                      d="M149.954 182H134V200C147.827 199.1 150.397 187.625 149.954 182Z"
+                      fill="#A62B26"
+                    />
+                    <path d="M147 35H134V49H147V35Z" fill="#A62B26" />
+                    <path
+                      d="M4 64H91L118 36.5H130"
+                      stroke="#F37873"
+                      strokeWidth="7"
+                    />
+                    <path
+                      d="M7 60.5H90L117 33H150"
+                      stroke="#4D1717"
+                      strokeWidth="7"
+                    />
+                    <path
+                      d="M133 181.5H147.5"
+                      stroke="#4D1717"
+                      strokeWidth="3.5"
+                    />
+                    <path
+                      d="M133 173H147.5"
+                      stroke="#4D1717"
+                      strokeWidth="3.5"
+                    />
+                    <path
+                      d="M133 56.5H147.5"
+                      stroke="#4D1717"
+                      strokeWidth="3.5"
+                    />
+                    <path
+                      d="M133 48H147.5"
+                      stroke="#4D1717"
+                      strokeWidth="3.5"
+                    />
+                    <circle
+                      opacity="0.5"
+                      cx="33"
+                      cy="31"
+                      r="12.75"
+                      fill="white"
+                      stroke="#4D1717"
+                      strokeWidth="3.5"
+                    />
+                    <circle
+                      cx="33"
+                      cy="31"
+                      r="9.5"
+                      fill="#5FC7FB"
+                      stroke="#17264D"
+                    />
+                    <circle cx="31" cy="30" r="3" fill="#AFE3FD" />
+                    <circle
+                      cx="136"
+                      cy="18"
+                      r="4"
+                      fill="#77A946"
+                      stroke="#4D1717"
+                      strokeWidth="2"
+                    />
+                    <circle
+                      cx="123"
+                      cy="18"
+                      r="4"
+                      fill="#F5A623"
+                      stroke="#4D1717"
+                      strokeWidth="2"
+                    />
+                    <circle
+                      cx="110"
+                      cy="18"
+                      r="4"
+                      fill="#CB0000"
+                      stroke="#4D1717"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M34.6363 126.785C36.6531 125.282 36.6471 122.259 34.6242 120.763L25.7024 114.168C23.2243 112.336 19.7171 114.11 19.7233 117.191L19.7499 130.417C19.7561 133.499 23.2703 135.258 25.7411 133.416L34.6363 126.785Z"
+                      fill="#FEC356"
+                      stroke="#4D1717"
+                      strokeWidth="3.5"
+                    />
+                    <rect
+                      x="43.25"
+                      y="169.25"
+                      width="53.5"
+                      height="6.5"
+                      rx="3.25"
+                      fill="#B22E29"
+                      stroke="#4D1717"
+                      strokeWidth="3.5"
+                    />
+                    <rect
+                      x="3.5"
+                      y="3.5"
+                      width="147"
+                      height="197"
+                      rx="13.5"
+                      stroke="#4D1717"
+                      strokeWidth="7"
+                    />
+                    <path d="M131 33V200" stroke="#4D1717" strokeWidth="7" />
+                  </svg>
+                </div>
+
+                {/* Title */}
+                <div>
+                  <span className="text-gray-50 group-hover:text-purple-200 text-2xl">
+                    Animu Codex
+                  </span>
+                </div>
+              </div>
+            </NavLink>
+          </div>
+
+          {/* Right Side */}
+          <div className="w-3/12"></div>
         </div>
       </div>
     </nav>
