@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/animu-codex/static/css/main.4b90cf2f.chunk.css",
+    "main.js": "/animu-codex/static/js/main.7ea75502.chunk.js",
+    "main.js.map": "/animu-codex/static/js/main.7ea75502.chunk.js.map",
+    "runtime-main.js": "/animu-codex/static/js/runtime-main.d39f1c39.js",
+    "runtime-main.js.map": "/animu-codex/static/js/runtime-main.d39f1c39.js.map",
+    "static/js/2.faf63686.chunk.js": "/animu-codex/static/js/2.faf63686.chunk.js",
+    "static/js/2.faf63686.chunk.js.map": "/animu-codex/static/js/2.faf63686.chunk.js.map",
+    "static/js/3.5cf6d018.chunk.js": "/animu-codex/static/js/3.5cf6d018.chunk.js",
+    "static/js/3.5cf6d018.chunk.js.map": "/animu-codex/static/js/3.5cf6d018.chunk.js.map",
+    "index.html": "/animu-codex/index.html",
+    "static/css/main.4b90cf2f.chunk.css.map": "/animu-codex/static/css/main.4b90cf2f.chunk.css.map",
+    "static/js/2.faf63686.chunk.js.LICENSE.txt": "/animu-codex/static/js/2.faf63686.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d39f1c39.js",
+    "static/js/2.faf63686.chunk.js",
+    "static/css/main.4b90cf2f.chunk.css",
+    "static/js/main.7ea75502.chunk.js"
+  ]
+}
