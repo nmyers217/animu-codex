@@ -11,7 +11,7 @@ function MediaDetailPage() {
   return (
     <>
       <Nav showBack />
-      <main className="pt-16">
+      <main className="bg-gray-100 dark:bg-gray-900 pt-16">
         <MediaDetail id={id} />
       </main>
       <Footer />

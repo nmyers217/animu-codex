@@ -68,20 +68,22 @@ export const getAllMedia = async function (
 };
 
 export const getMedia = async function (id: number) {
-  // TODO: clean this up
   const query = gql`
     query($id: Int) {
       Media(id: $id) {
         id
         idMal
+        bannerImage
+        coverImage {
+          medium
+          large
+        }
         title {
           english
           romaji
           native
         }
-        type
         status
-        description
         startDate {
           year
           month
@@ -92,25 +94,18 @@ export const getMedia = async function (id: number) {
           month
           day
         }
+        type
+        format
         season
+        seasonYear
         episodes
         chapters
         volumes
+        description
         trailer {
           id
           site
-          thumbnail
         }
-        coverImage {
-          large
-        }
-        bannerImage
-        genres
-        averageScore
-        popularity
-        isLocked
-        favourites
-        updatedAt
       }
     }
   `;

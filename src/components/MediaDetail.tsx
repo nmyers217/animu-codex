@@ -2,13 +2,15 @@ import React from 'react';
 import { useQuery } from 'react-query';
 
 import { getMedia } from '../api';
+import LoadingSpinner from './LoadingSpinner';
+import MediaSummary from './MediaSummary';
 
 interface MediaDetailProps {
   id: number;
 }
 
 function MediaDetail({ id }: MediaDetailProps) {
-  const { status, data, error, isFetching } = useQuery(
+  const { status, data, error } = useQuery(
     ['media', id],
     async () => getMedia(id),
     {
@@ -18,62 +20,76 @@ function MediaDetail({ id }: MediaDetailProps) {
   );
 
   return (
-    <div>
+    <div className="subpixel-antialiased md:antialiased">
       {!id || status === 'loading' ? (
-        'Loading...'
+        <div className="container mx-auto max-w-5xl flex items-center justify-center pt-10 pb-16 sm:pt-24 sm:pb-36 lg:pt-40 lg:pb-56 text-center">
+          <LoadingSpinner width={20} height={20} color="indigo-600" />
+        </div>
       ) : status === 'error' ? (
-        <span>Error: {(error as Error).message}</span>
+        <span className="text-red-600">Error: {(error as Error).message}</span>
       ) : (
-        <>
-          {/* TODO: what happens if its a manga */}
-
-          {data.bannerImage && (
-            <img
-              alt={`${data.title.english || data.title.romaji} banner`}
-              src={data.bannerImage}
-            />
-          )}
-
-          <h1>{data.title.english}</h1>
-
-          {data.coverImage && (
-            <img
-              alt={`${data.title.english || data.title.romaji} cover`}
-              src={data.coverImage.large}
-            />
-          )}
-
-          {/* TODO: Make a trailer component */}
-          {/* NOTE: Right now only youtube and dailymotion are supported */}
-          {data.trailer &&
-            ['youtube', 'dailymotion'].includes(data.trailer.site) && (
-              <embed
-                title={`${data.title.english || data.title.romaji} trailer`}
-                src={
-                  data.trailer.site === 'youtube'
-                    ? `https://www.youtube.com/embed/${data.trailer.id}`
-                    : `https://www.dailymotion.com/embed/video/${data.trailer.id}`
-                }
+        <div className="flex flex-col">
+          <div className="flex-none">
+            {data.bannerImage && (
+              <img
+                alt={`${data.title.english || data.title.romaji} banner`}
+                src={data.bannerImage}
               />
             )}
+          </div>
 
-          <p>
-            <span>{data.type}</span> | <span>{data.status}</span>
-          </p>
-          {/* TODO: date component for start and end date */}
-          {/* TODO: Season and episodes */}
-          {/* TODO: Stats */}
+          <div className="my-4 md:my-10 lg:my-14 p-4">
+            <MediaSummary media={data} truncate={false} card>
+              <div className="flex flex-row justify-between items-center mt-2 pt-4 space-x-4 border-t border-gray-200 dark:border-gray-700">
+                <button
+                  onClick={() =>
+                    window.open(`https://anilist.co/anime/${data.id}`)
+                  }
+                  className="flex-none text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg"
+                >
+                  AniList
+                  <span className="text-gray-100 inline-flex items-center">
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      className="w-4 h-4 ml-2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                  </span>
+                </button>
 
-          {/* NOTE: the description can have <br> in it */}
-          {data.description &&
-            data.description
-              .split('<br>')
-              .map((line: string, i: number) => <p key={i}>{line}</p>)}
-
-          {/* TODO: put the rest on here */}
-
-          <div>{isFetching ? 'Background Updating...' : ' '}</div>
-        </>
+                {data.idMal && (
+                  <button
+                    onClick={() =>
+                      window.open(`https://myanimelist.net/anime/${data.idMal}`)
+                    }
+                    className="flex-none text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                  >
+                    MyAnimeList
+                    <span className="text-gray-100 inline-flex items-center">
+                      <svg
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        className="w-4 h-4 ml-2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                      </svg>
+                    </span>
+                  </button>
+                )}
+              </div>
+            </MediaSummary>
+          </div>
+        </div>
       )}
     </div>
   );

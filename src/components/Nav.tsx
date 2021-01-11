@@ -178,7 +178,7 @@ function Nav({ showBack }: NavProps) {
           </div>
 
           {/* Right Side */}
-          <div className="flex flex-none p-2 mr-4 items-center justify-end">
+          <div className="flex flex-none p-2 items-center justify-end">
             <DarkModeToggle
               onChange={darkMode.toggle}
               checked={darkMode.value}

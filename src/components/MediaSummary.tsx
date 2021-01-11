@@ -1,28 +1,30 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
 import MediaTitle from './MediaTitle';
 import MediaCover from './MediaCover';
 import MediaBadges from './MediaBadges';
 import MediaDescription from './MediaDescription';
 import MediaStatus from './MediaStatus';
+import MediaDates from './MediaDates';
 
 interface MediaSummaryProps {
   media: any;
+  truncate?: boolean;
+  card?: boolean;
 }
 
-const formatDate = function (date: {
-  year: number;
-  month: number;
-  day: number;
-}) {
-  return new Date(
-    `${date.year}-${date.month}-${date.day}`
-  ).toLocaleDateString();
-};
-
-function MediaSummary({ media }: MediaSummaryProps) {
+const MediaSummary: FunctionComponent<MediaSummaryProps> = ({
+  media,
+  truncate = true,
+  card = true,
+  children,
+}) => {
   return (
-    <div className="container bg-white max-w-5xl mx-auto flex sm:space-x-4 sm:justify-between dark:bg-gray-800 dark:bg-opacity-40">
+    <div
+      className={`container bg-white max-w-5xl mx-auto ${
+        card && 'rounded-xl shadow-lg border-transparent'
+      } flex sm:space-x-4 sm:justify-between dark:bg-gray-800 dark:bg-opacity-40`}
+    >
       <div className="ml-4 hidden sm:flex flex-none justify-center items-center">
         <MediaCover
           id={media.id}
@@ -51,18 +53,8 @@ function MediaSummary({ media }: MediaSummaryProps) {
               <MediaStatus status={media.status} />
             </div>
 
-            <div className="font-sans font-normal text-gray-400 tracking-tight text-right">
-              {media.startDate.day ? (
-                <>
-                  <span>{formatDate(media.startDate)}</span>
-                  {' - '}
-                  <span>
-                    {media.endDate.day ? formatDate(media.endDate) : 'Present'}
-                  </span>
-                </>
-              ) : (
-                <span className="mr-8">TBD</span>
-              )}
+            <div>
+              <MediaDates startDate={media.startDate} endDate={media.endDate} />
             </div>
           </div>
         </div>
@@ -83,13 +75,14 @@ function MediaSummary({ media }: MediaSummaryProps) {
           {media.description && (
             <MediaDescription
               description={media.description}
-              truncateLength={225}
+              truncateLength={truncate ? 225 : undefined}
             />
           )}
+          {children}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default MediaSummary;
