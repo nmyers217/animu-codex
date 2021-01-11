@@ -1,13 +1,17 @@
 import { GraphQLClient, gql } from 'graphql-request';
 
+import { SearchFormState } from '../components/SearchForm';
+
 const endpoint = 'https://graphql.anilist.co';
 const client = new GraphQLClient(endpoint);
 
-export const getAllMedia = async function (page, perPage = 50) {
-  // TODO: support different media query params
-  // TODO: trim unused fields
+export const getAllMedia = async function (
+  page: number,
+  perPage: number = 50,
+  filters: SearchFormState
+) {
   const query = gql`
-    query($page: Int, $perPage: Int) {
+    query($search: String, $page: Int, $perPage: Int) {
       Page(page: $page, perPage: $perPage) {
         pageInfo {
           total
@@ -16,7 +20,7 @@ export const getAllMedia = async function (page, perPage = 50) {
           lastPage
           hasNextPage
         }
-        media(sort: POPULARITY_DESC) {
+        media(search: $search, sort: POPULARITY_DESC) {
           id
           coverImage {
             medium
@@ -51,11 +55,13 @@ export const getAllMedia = async function (page, perPage = 50) {
       }
     }
   `;
-  const { Page } = await client.request(query, { page, perPage });
+  const variables = { page, perPage, search: filters.search || undefined };
+  const { Page } = await client.request(query, variables);
   return Page;
 };
 
-export const getMedia = async function (id) {
+export const getMedia = async function (id: number) {
+  // TODO: clean this up
   const query = gql`
     query($id: Int) {
       Media(id: $id) {

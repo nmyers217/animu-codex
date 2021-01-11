@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 interface MediaTitleProps {
   id: string;
   english?: string;
-  romanji?: string;
+  romaji?: string;
   native?: string;
 }
 
-function MediaTitle({ id, english, romanji, native }: MediaTitleProps) {
-  const preferred = english || romanji;
+function MediaTitle({ id, english, romaji, native }: MediaTitleProps) {
+  const preferred = english || romaji || '<No Translation>';
   const hasNative = !!native;
 
   return (

@@ -48,8 +48,6 @@ function MediaSummary({ media }: MediaSummaryProps) {
           </div>
         </div>
 
-        {/* TODO: fill in seasons, episodies, or volumes, chapters */}
-        {/* TODO: badges */}
         <div className="px-2">
           <MediaBadges
             type={media.type}
@@ -63,10 +61,12 @@ function MediaSummary({ media }: MediaSummaryProps) {
         </div>
 
         <div className="px-2">
-          <MediaDescription
-            description={media.description}
-            truncateLength={225}
-          />
+          {media.description && (
+            <MediaDescription
+              description={media.description}
+              truncateLength={225}
+            />
+          )}
         </div>
       </div>
     </div>

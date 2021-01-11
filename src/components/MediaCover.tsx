@@ -8,7 +8,7 @@ interface MediaCoverProps {
 }
 
 function MediaCover({ id, title, coverImage }: MediaCoverProps) {
-  const preferredTitle = title.english || title.romanji;
+  const preferredTitle = title.english || title.romaji;
   return (
     <>
       <Link to={`/media/${id}`}>

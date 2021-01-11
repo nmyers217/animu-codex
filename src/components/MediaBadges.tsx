@@ -37,7 +37,11 @@ function MediaBadges({
 
   const badges = [
     { show: true, content: type.toLowerCase(), color },
-    { show: true, content: format.toLowerCase(), color: 'bg-purple-500' },
+    {
+      show: format !== type,
+      content: format.toLowerCase(),
+      color: 'bg-purple-500',
+    },
     {
       show: !!season,
       content: `${season?.toLowerCase()} ${seasonYear}`.trim(),
