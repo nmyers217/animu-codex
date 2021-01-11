@@ -2,25 +2,28 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 interface MediaTitleProps {
+  id: string;
   english?: string;
   romanji?: string;
   native?: string;
 }
 
-function MediaTitle({ english, romanji, native }: MediaTitleProps) {
+function MediaTitle({ id, english, romanji, native }: MediaTitleProps) {
   const preferred = english || romanji;
   const hasNative = !!native;
 
   return (
     <>
       <h2 className="text-2xl font-medium text-gray-900 title-font">
-        {preferred}
+        <Link
+          to={`/media/${id}`}
+          className="hover:underline hover:text-purple-600"
+        >
+          {preferred}
+          <br />
+          {hasNative && <span>{native}</span>}
+        </Link>
       </h2>
-      {hasNative && (
-        <h2 className="text-xl font-medium text-gray-700 title-font">
-          {native}
-        </h2>
-      )}
     </>
   );
 }

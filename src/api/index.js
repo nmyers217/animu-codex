@@ -18,15 +18,16 @@ export const getAllMedia = async function (page, perPage = 50) {
         }
         media(sort: POPULARITY_DESC) {
           id
-          idMal
+          coverImage {
+            medium
+            large
+          }
           title {
             english
             romaji
             native
           }
-          type
           status
-          description
           startDate {
             year
             month
@@ -37,19 +38,15 @@ export const getAllMedia = async function (page, perPage = 50) {
             month
             day
           }
+          type
+          format
+          genres
           season
+          seasonYear
           episodes
           chapters
           volumes
-          coverImage {
-            medium
-            large
-          }
-          genres
-          averageScore
-          popularity
-          isLocked
-          favourites
+          description
         }
       }
     }

@@ -8,7 +8,7 @@ function MediaListPage() {
   return (
     <>
       <Nav />
-      <main className="pt-16">
+      <main className="bg-gray-100 pt-16">
         <MediaList />
       </main>
       <Footer />

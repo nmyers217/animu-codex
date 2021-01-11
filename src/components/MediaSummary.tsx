@@ -1,62 +1,73 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import MediaTitle from './MediaTitle';
+import MediaCover from './MediaCover';
+import MediaBadges from './MediaBadges';
+import MediaDescription from './MediaDescription';
+import MediaStatus from './MediaStatus';
 
 interface MediaSummaryProps {
   media: any;
 }
 
+const formatDate = function (date: {
+  year: number;
+  month: number;
+  day: number;
+}) {
+  return new Date(
+    `${date.year}-${date.month}-${date.day}`
+  ).toLocaleDateString();
+};
+
 function MediaSummary({ media }: MediaSummaryProps) {
   return (
-    <div className="container mx-auto px-4 py-6 flex space-x-4 justify-between">
-      {/* TODO: break these into MediaBanner ? */}
+    <div className="container bg-white max-w-5xl mx-auto px-4 py-6 flex space-x-4 justify-between">
       <div className="flex flex-none justify-center items-center">
-        <div className="block md:hidden">
-          {media.coverImage.medium && (
-            <img
-              alt={`${media.title.english || media.title.romanji} cover`}
-              src={media.coverImage.medium}
-            />
-          )}
-        </div>
-        <div className="hidden md:block">
-          {media.coverImage.large && (
-            <img
-              alt={`${media.title.english || media.title.romanji} cover`}
-              src={media.coverImage.large}
-            />
-          )}
-        </div>
+        <MediaCover
+          id={media.id}
+          title={media.title}
+          coverImage={media.coverImage}
+        />
       </div>
 
-      <div className="flex flex-col flex-grow border-l-2 border-blue-500 px-2">
-        {/* TODO: proper link styling */}
-        <div className="mb-4">
-          <Link to={`/media/${media.id}`}>
-            <MediaTitle {...media.title} />
-          </Link>
+      <div className="flex flex-col flex-grow space-y-4 border-l-4 border-opacity-75 border-purple-600">
+        <div className="px-2 pb-2 flex flex-row justify-between border-b border-gray-200">
+          <div>
+            <MediaTitle id={media.id} {...media.title} />
+          </div>
+
+          <div className="flex flex-col justify-around">
+            <div className="flex flex-row justify-end">
+              <MediaStatus status={media.status} />
+            </div>
+
+            <div className="font-sans font-normal text-gray-400 tracking-tight text-right">
+              {formatDate(media.startDate)} - {formatDate(media.endDate)}
+            </div>
+          </div>
         </div>
 
         {/* TODO: fill in seasons, episodies, or volumes, chapters */}
         {/* TODO: badges */}
-        <p>
-          {media.type && <span>{media.type}</span>}
-          {media.status && <span> | {media.status}</span>}
-        </p>
+        <div className="px-2">
+          <MediaBadges
+            type={media.type}
+            format={media.format}
+            season={media.season}
+            seasonYear={media.seasonYear}
+            episodes={media.episodes}
+            volumes={media.volumes}
+            chapters={media.chapters}
+          />
+        </div>
 
-        {/* TODO: Break this out into a MediaDescription component */}
-        {/* NOTE: the description can have <br> in it */}
-        {/* TODO: proper truncation */}
-        {media.description &&
-          media.description
-            .split('<br>')
-            .map((line: string, i: number) => (
-              <p key={i} className="leading-relaxed">
-                {line}
-              </p>
-            ))
-            .shift()}
+        <div className="px-2">
+          <MediaDescription
+            description={media.description}
+            truncateLength={225}
+          />
+        </div>
       </div>
     </div>
   );

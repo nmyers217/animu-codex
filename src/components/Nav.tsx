@@ -9,7 +9,7 @@ function Nav({ showBack }: NavProps) {
   const history = useHistory();
 
   return (
-    <nav className="bg-gray-800 min-w-full fixed">
+    <nav className="bg-gray-800 min-w-full fixed z-50">
       <div className="container mx-auto">
         <div className="flex flex-row items-center justify-between">
           {/* Left Side */}
